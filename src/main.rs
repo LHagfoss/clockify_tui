@@ -1,5 +1,5 @@
-mod config;
 pub mod api;
+mod config;
 pub mod tui;
 
 use clap::{Parser, Subcommand};
@@ -43,7 +43,6 @@ fn main() {
             println!("Successfully saved Clockify API Key!");
         }
         None => {
-            // Check if config exists and has an API Key
             let cfg = match config::load() {
                 Ok(c) => c,
                 Err(e) => {
@@ -54,7 +53,9 @@ fn main() {
 
             if cfg.api_key.is_none() {
                 eprintln!("Error: No Clockify API Key registered.");
-                eprintln!("Please register your API Key first using: clockify auth --token <YOUR_TOKEN>");
+                eprintln!(
+                    "Please register your API Key first using: clockify auth --token <YOUR_TOKEN>"
+                );
                 process::exit(1);
             }
 

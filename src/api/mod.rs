@@ -63,7 +63,7 @@ impl Client {
         description: &str,
     ) -> Result<TimeEntry, reqwest::Error> {
         let url = format!("https://api.clockify.me/api/v1/workspaces/{}/time-entries", workspace_id);
-        
+
         let mut body = json!({
             "start": chrono::Utc::now().to_rfc3339_opts(chrono::SecondsFormat::Secs, true),
             "description": description,
@@ -85,7 +85,7 @@ impl Client {
         end: &str,
     ) -> Result<TimeEntry, reqwest::Error> {
         let url = format!("https://api.clockify.me/api/v1/workspaces/{}/time-entries", workspace_id);
-        
+
         let mut body = json!({
             "start": start,
             "end": end,
